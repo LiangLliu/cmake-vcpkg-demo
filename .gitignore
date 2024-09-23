@@ -1,0 +1,6 @@
+.idea
+*.deb
+*.zip
+build
+cmake-build-debug
+**/.DS_Store

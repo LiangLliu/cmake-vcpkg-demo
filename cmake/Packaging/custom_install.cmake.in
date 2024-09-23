@@ -1,0 +1,20 @@
+# Get environment variables
+set(CMAKE_INSTALL_PREFIX "@CMAKE_INSTALL_PREFIX@")
+set(CMAKE_BINARY_DIR "@CMAKE_BINARY_DIR@")
+set(CUSTOM_INSTALL_PATH "@CUSTOM_INSTALL_PATH@")
+set(DEPENDENCY_FILE_PATH "@DEPENDENCY_FILE_PATH@")
+
+if (EXISTS "${DEPENDENCY_FILE_PATH}")
+    file(GLOB INSTALL_FILES "${DEPENDENCY_FILE_PATH}/*")
+
+    if (INSTALL_FILES)
+        foreach (FILE IN LISTS INSTALL_FILES)
+            message(STATUS "Installing ${FILE} to ${CUSTOM_INSTALL_PATH}")
+            file(INSTALL DESTINATION "${CUSTOM_INSTALL_PATH}" FILES "${FILE}")
+        endforeach ()
+    else ()
+        message(WARNING "No files found in ${DEPENDENCY_FILE_PATH}")
+    endif ()
+else ()
+    message(WARNING "Dependency file path not found: ${DEPENDENCY_FILE_PATH}")
+endif ()

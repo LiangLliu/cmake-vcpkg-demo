@@ -1,0 +1,17 @@
+
+if (CMAKE_BUILD_TYPE MATCHES "^Rel.*")
+    file(GLOB vcpkg_installed_libs "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib/lib*")
+else ()
+    file(GLOB vcpkg_installed_libs "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug/lib/lib*")
+endif ()
+
+if (NOT "${vcpkg_installed_libs}" STREQUAL "")
+    foreach (lib ${vcpkg_installed_libs})
+        if (lib MATCHES ".*\\.a$")
+            list(REMOVE_ITEM vcpkg_installed_libs ${lib})
+        endif ()
+    endforeach ()
+endif ()
+message(DEBUG "vcpkg_installed_libs: ${vcpkg_installed_libs}")
+message(DEBUG "vcpkg_installed_pkgconfig: ${vcpkg_installed_pkgconfig}")
+install(FILES ${vcpkg_installed_libs} DESTINATION lib)

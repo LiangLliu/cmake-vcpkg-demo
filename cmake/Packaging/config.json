@@ -1,0 +1,45 @@
+{
+  "configs": [
+    {
+      "system_name": "Linux",
+      "system_processor": [
+        {
+          "arch_name": "x86_64",
+          "configs": {
+            "ld_config_file": "/etc/ld.so.conf",
+            "default_rpaths": [
+              "/lib",
+              "/usr/lib",
+              "/usr/local/lib"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "system_name": "QNX",
+      "system_processor": [
+        {
+          "arch_name": "x86_64",
+          "configs": {
+            "default_rpaths": [
+              "/x86_64/usr/lib",
+              "/x86_64/lib",
+              "/usr/lib"
+            ]
+          }
+        },
+        {
+          "arch_name": "aarch64",
+          "configs": {
+            "default_rpaths": [
+              "/aarch64le/usr/lib",
+              "/aarch64le/lib",
+              "/usr/lib"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

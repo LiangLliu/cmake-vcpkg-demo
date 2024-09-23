@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  dev-environment:
+    image: amd64/ubuntu:22.04
+    container_name: dev_env
+    volumes:
+      - .:/workspace/cmake-vcpkg-demo
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+    deploy:
+      resources:
+        limits:
+          cpus: '5.0'
+          memory: 6G
+    working_dir: /workspace/cmake-vcpkg-demo
+    shm_size: '2gb'
+    networks:
+      - ubuntu-dev
+
+
+networks:
+  ubuntu-dev:
+    # Use a custom driver
+    driver: bridge
