@@ -1,9 +1,10 @@
-version: '3.8'
-
 services:
-  dev-environment:
-    image: amd64/ubuntu:22.04
-    container_name: dev_env
+  cmake-vcpkg-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: "lianglliu/cpp-dev-container:1.0.0"
+    container_name: cpp-dev-container
     volumes:
       - .:/workspace/cmake-vcpkg-demo
     stdin_open: true
@@ -16,11 +17,4 @@ services:
           memory: 6G
     working_dir: /workspace/cmake-vcpkg-demo
     shm_size: '2gb'
-    networks:
-      - ubuntu-dev
 
-
-networks:
-  ubuntu-dev:
-    # Use a custom driver
-    driver: bridge

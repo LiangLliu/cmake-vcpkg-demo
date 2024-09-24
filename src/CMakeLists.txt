@@ -1,2 +1,2 @@
-add_subdirectory(hello-world)
-add_subdirectory(pcl-demo)
+add_subdirectory(fmt-demo)
+add_subdirectory(boost-filesystem-demo)

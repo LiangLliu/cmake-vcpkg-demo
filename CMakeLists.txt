@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(cmake-vcpkg-demo 1.0.0)
+if (UNIX)
+    set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib:$ORIGIN:$ORIGIN:/lib")
+endif ()
+
+project(cmake-vcpkg-demo)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

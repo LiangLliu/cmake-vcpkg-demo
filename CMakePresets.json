@@ -12,7 +12,8 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CONFIG_ENABLE_PACKAGING": "ON"
+        "CONFIG_ENABLE_PACKAGING": "ON",
+        "CONFIG_ENABLE_FULL_PACKAGING": "ON"
       }
     },
     {
