@@ -14,10 +14,9 @@ def copy_all_lib(installed_libs_dir, all_project_libraries, all_system_libraries
         copy_file_and_create_links(lib, installed_libs_dir)
 
 
-def copy_all_deps_to_install(bin_file_path, libs_to_temp_dir, build_path, system_name, arch_name, cmake_sysroot):
+def copy_all_deps_to_install(bin_file_path, libs_to_temp_dir, build_path, system_name, arch_name):
     system_libraries, project_libraries, missing_libraries = resolve_all_dependencies(
-        bin_file_path, build_path, system_name, arch_name, cmake_sysroot
-    )
+        bin_file_path, build_path, system_name, arch_name)
 
     print("-----------------all_missing_libraries------------------")
     for lib in missing_libraries:
@@ -31,9 +30,6 @@ if __name__ == "__main__":
     parser.add_argument("--executable", required=True, help="Path to the executable.")
     parser.add_argument("--system_name", required=True, help="System name (e.g., Linux).")
     parser.add_argument("--arch_name", required=True, help="Architecture name (e.g., x86_64).")
-    parser.add_argument(
-        "--cmake_sysroot", required=False, nargs='?', const=None, default=None, help="CMake sysroot path (optional)."
-    )
     parser.add_argument("--project_build_path", required=True, help="Path to the project build.")
     parser.add_argument("--temp_dir", required=True, help="Temporary directory for copying libs.")
 
@@ -46,6 +42,5 @@ if __name__ == "__main__":
         copy_libs_to_temp_dir,
         args.project_build_path,
         args.system_name,
-        args.arch_name,
-        args.cmake_sysroot,
+        args.arch_name
     )

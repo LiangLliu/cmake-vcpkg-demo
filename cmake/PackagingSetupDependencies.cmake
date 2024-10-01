@@ -32,8 +32,7 @@ function(package_full_deps target)
             "Recursively query all dependencies and prepare to copy them to the installation directory"
             COMMAND
             /usr/bin/python3 ${CMAKE_SOURCE_DIR}/cmake/Packaging/copy_all_deps_to_install.py --executable
-            $<TARGET_FILE:${target}> --system_name ${CMAKE_SYSTEM_NAME} --arch_name ${CMAKE_SYSTEM_PROCESSOR} --cmake_sysroot
-            ${CMAKE_SYSROOT} --project_build_path ${CMAKE_BINARY_DIR} --temp_dir packaging/${target}/libs
+            $<TARGET_FILE:${target}> --system_name ${CMAKE_SYSTEM_NAME} --arch_name ${CMAKE_SYSTEM_PROCESSOR} --project_build_path ${CMAKE_BINARY_DIR} --temp_dir packaging/${target}/libs
             COMMENT "Recursively query all dependencies and prepare to copy them to the installation directory"
             VERBATIM)
 
@@ -53,8 +52,7 @@ function(package_apt_managed_system_deps target)
             COMMAND ${CMAKE_COMMAND} -E echo "Analyze all dependencies and let apt manage system dependencies"
             COMMAND
             /usr/bin/python3 ${CMAKE_SOURCE_DIR}/cmake/Packaging/analyze_apt_deps_set_cpack.py --executable
-            $<TARGET_FILE:${target}> --system_name ${CMAKE_SYSTEM_NAME} --arch_name ${CMAKE_SYSTEM_PROCESSOR} --cmake_sysroot
-            ${CMAKE_SYSROOT} --project_build_path ${CMAKE_BINARY_DIR} --cpack_config_path
+            $<TARGET_FILE:${target}> --system_name ${CMAKE_SYSTEM_NAME} --arch_name ${CMAKE_SYSTEM_PROCESSOR} --project_build_path ${CMAKE_BINARY_DIR} --cpack_config_path
             ${CMAKE_BINARY_DIR}/CPackConfig.cmake
             COMMENT "Analyze all dependencies and let apt manage system dependencies"
             VERBATIM)

@@ -72,7 +72,7 @@ def read_ld_so_conf(ld_config_file):
     return [path for path in paths if os.path.isdir(path)]
 
 
-def get_library_paths(system_name, arch_name, cmake_sysroot):
+def get_library_paths(system_name, arch_name):
     _ld_config_file, _default_rpaths = parse_config(system_name, arch_name)
     result = []
 
@@ -89,7 +89,7 @@ def get_library_paths(system_name, arch_name, cmake_sysroot):
 
     if _default_rpaths and len(_default_rpaths) > 0:
         for path in _default_rpaths:
-            rpath = os.path.join(cmake_sysroot, path.lstrip('/')) if cmake_sysroot else os.path.join('/', path)
+            rpath = os.path.join(path)
             if os.path.exists(rpath) and rpath != '/' and rpath not in result:
                 result.append(rpath)
 
@@ -268,8 +268,8 @@ def find_libraries_in_paths(current_libraries, _system_libraries_map, _project_l
     return found_system_libraries_map, found_project_libraries_map, missing_libraries_set
 
 
-def resolve_all_dependencies(_executable_path, project_build_path, system_name, arch_name, cmake_sysroot):
-    library_rpaths = get_library_paths(system_name, arch_name, cmake_sysroot)
+def resolve_all_dependencies(_executable_path, project_build_path, system_name, arch_name):
+    library_rpaths = get_library_paths(system_name, arch_name)
     print(f"Total libraries found: {library_rpaths}")
     libraries_map = scan_library_paths(library_rpaths)
 

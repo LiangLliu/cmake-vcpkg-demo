@@ -22,21 +22,13 @@
         {
           "arch_name": "x86_64",
           "configs": {
-            "default_rpaths": [
-              "/x86_64/usr/lib",
-              "/x86_64/lib",
-              "/usr/lib"
-            ]
+            "default_rpaths": []
           }
         },
         {
           "arch_name": "aarch64",
           "configs": {
-            "default_rpaths": [
-              "/aarch64le/usr/lib",
-              "/aarch64le/lib",
-              "/usr/lib"
-            ]
+            "default_rpaths": []
           }
         }
       ]

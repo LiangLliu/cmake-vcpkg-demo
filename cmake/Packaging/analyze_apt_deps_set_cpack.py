@@ -34,10 +34,10 @@ def update_cpack_debian_package_depends(cpack_config_path, dependencies):
 
 
 def analyze_apt_deps_set_cpack(
-    executable_path, project_build_path, cpack_cmake_file_path, system_name, arch_name, cmake_sysroot
+        executable_path, project_build_path, cpack_cmake_file_path, system_name, arch_name
 ):
     system_libraries, _, all_missing_libraries = resolve_all_dependencies(
-        executable_path, project_build_path, system_name, arch_name, cmake_sysroot
+        executable_path, project_build_path, system_name, arch_name
     )
 
     system_libs_name = find_libs_by_system(system_libraries)
@@ -56,9 +56,6 @@ if __name__ == "__main__":
     parser.add_argument("--executable", required=True, help="Path to the executable.")
     parser.add_argument("--system_name", required=True, help="System name (e.g., Linux).")
     parser.add_argument("--arch_name", required=True, help="Architecture name (e.g., x86_64).")
-    parser.add_argument(
-        "--cmake_sysroot", required=False, nargs='?', const=None, default=None, help="CMake sysroot path (optional)."
-    )
     parser.add_argument("--project_build_path", required=True, help="Path to the project build.")
     parser.add_argument("--cpack_config_path", required=True, help="Cpack config path")
 
@@ -69,6 +66,5 @@ if __name__ == "__main__":
         args.project_build_path,
         args.cpack_config_path,
         args.system_name,
-        args.arch_name,
-        args.cmake_sysroot,
+        args.arch_name
     )
